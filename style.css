@@ -12,22 +12,16 @@ body {
 header {
     position: relative;
     width: 100%;
-    height: 350px; /* Ajuste la hauteur du header pour mieux voir l'image */
-    background-image: url('/contents/image.jpg'); /* Placez l'image en tant que fond */
+    height: 350px;
+    background-image: url('/contents/image.jpg'); 
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffeb3b;
-}
-
-.header-overlay {
-    background: rgba(0, 0, 0, 0.85); /* Couche semi-transparente pour lisibilité */
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.5); /*Opacité du background*/
+    background-blend-mode: darken;
 }
 
 header h1 {
