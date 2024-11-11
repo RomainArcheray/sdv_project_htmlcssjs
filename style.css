@@ -13,14 +13,14 @@ header {
     position: relative;
     width: 100%;
     height: 350px;
-    background-image: url('/contents/image.jpg'); 
+    background-image: url('/contents/background.jpg'); 
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffeb3b;
-    background-color: rgba(0, 0, 0, 0.5); /*Opacité du background*/
+    background-color: rgba(0, 0, 0, 0.75); /*Opacité du background*/
     background-blend-mode: darken;
 }
 
