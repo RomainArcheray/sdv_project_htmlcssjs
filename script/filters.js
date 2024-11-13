@@ -49,7 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const recetteDescription = document.createElement('p');
             recetteDescription.classList.add('recipe-description');
-            recetteDescription.textContent = `RECETTE: ${recette.description}`;
+            
+            const recetteLabel = document.createElement('span');
+            recetteLabel.classList.add('recipe-label');
+            recetteLabel.textContent = "RECETTE:";
+            
+            recetteDescription.textContent = `${recette.description}`;
+            recetteCard.appendChild(recetteLabel);
             recetteCard.appendChild(recetteDescription);
 
             const ingredientsList = document.createElement('p');
@@ -169,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             selectUstensiles.appendChild(option);
         });
 
-         // Écouteurs d'événements pour les sélects
+         // Écouteurs d'événements pour les sélect
         selectIngredients.addEventListener('change', (e) => {
             addFilter('ingredients', e.target.value);
             e.target.selectedIndex = 0; 
