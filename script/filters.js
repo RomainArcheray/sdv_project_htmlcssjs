@@ -22,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonction pour afficher les recettes filtrées
     function afficherRecettes(recettesFiltrees) {
         recettesContainer.innerHTML = '';
+
+        if (recettesFiltrees.length === 0) { // Si aucune recette trouvée
+            const noResultMessage = document.createElement('p');
+            noResultMessage.classList.add('no-result-message');
+            noResultMessage.textContent = `Aucun résultat trouvé avec le mot "${searchQuery}"`;
+            recettesContainer.appendChild(noResultMessage);
+            recetteCount.textContent = '0 recette';
+            return;
+        }
+
         recettesFiltrees.forEach(recette => {
             const recetteCard = document.createElement('div');
             recetteCard.classList.add('recipe-card');
