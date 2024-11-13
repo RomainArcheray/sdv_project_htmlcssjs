@@ -11,6 +11,7 @@ body {
 
 header {
     position: relative;
+    text-align: center;
     width: 100%;
     height: 350px;
     background-image: url('/contents/background.jpg'); 
@@ -149,3 +150,4 @@ header h1 {
     text-align: center;
     margin-top: 20px;
 }
+
