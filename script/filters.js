@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let searchQuery = ""; // Variable pour stocker le texte de recherche
 
     document.addEventListener('recettesChargees', () => {
-        afficherRecettes(recettes); 
+        afficherRecettes(recettes);
+        remplirSelects(); 
     });
 
     // Fonction pour afficher les recettes filtrées
@@ -128,4 +129,46 @@ document.addEventListener('DOMContentLoaded', () => {
     selectIngredients.addEventListener('change', (e) => addFilter('ingredients', e.target.value));
     selectAppareils.addEventListener('change', (e) => addFilter('appareils', e.target.value));
     selectUstensiles.addEventListener('change', (e) => addFilter('ustensiles', e.target.value));
+
+    
+    // Fonction pour remplir les selects avec les valeurs uniques
+    function remplirSelects() {
+        const ingredientsSet = new Set();
+        const appareilsSet = new Set();
+        const ustensilesSet = new Set();
+
+        recettes.forEach(recette => {
+            recette.ingredients.forEach(ingredient => ingredientsSet.add(ingredient.ingredient));
+            if (recette.appliance) appareilsSet.add(recette.appliance);
+            recette.ustensils.forEach(ustensile => ustensilesSet.add(ustensile));
+        });
+
+        selectIngredients.innerHTML = '';
+        selectAppareils.innerHTML = '';
+        selectUstensiles.innerHTML = '';
+
+        // Ajouter les options dans les selects
+        ingredientsSet.forEach(ingredient => {
+            const option = document.createElement('option');
+            option.value = ingredient;
+            option.textContent = ingredient;
+            selectIngredients.appendChild(option);
+        });
+
+        appareilsSet.forEach(appareil => {
+            const option = document.createElement('option');
+            option.value = appareil;
+            option.textContent = appareil;
+            selectAppareils.appendChild(option);
+        });
+
+        ustensilesSet.forEach(ustensile => {
+            const option = document.createElement('option');
+            option.value = ustensile;
+            option.textContent = ustensile;
+            selectUstensiles.appendChild(option);
+        });
+    }
 });
+
+
