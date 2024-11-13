@@ -1,28 +1,22 @@
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     const recettesContainer = document.querySelector('.recipes');
-    const selectIngredients = document.querySelector('#ingredients');
-    const selectAppareils = document.querySelector('#appareils');
-    const selectUstensiles = document.querySelector('#ustensiles');
+    const selectIngredients = document.querySelector('select#ingredients');
+    const selectAppareils = document.querySelector('select#appareils');
+    const selectUstensiles = document.querySelector('select#ustensiles');
     const tagsContainer = document.querySelector('.tags-container');
-    const recetteCount = document.querySelector('.filters span');
-    
-    // Stockage des recettes
-    let recettes = []; 
+    const recetteCount = document.querySelector('.filters span'); 
+
     let selectedFilters = {
         ingredients: [],
         appareils: [],
         ustensiles: []
     };
 
-    try {
-        const response = await fetch('https://gist.githubusercontent.com/baiello/0a974b9c1ec73d7d0ed7c8abc361fc8e/raw/e598efa6ef42d34cc8d7e35da5afab795941e53e/recipes.json');
-        recettes = await response.json();
-        afficherRecettes(recettes);
-    } catch (error) {
-        console.error('Erreur de chargement des recettes:', error);
-    }
+    document.addEventListener('recettesChargees', () => {
+        afficherRecettes(recettes); 
+    });
 
-    // Fonction pour afficher les recettes
+    // Fonction pour afficher les recettes filtrées
     function afficherRecettes(recettesFiltrees) {
         recettesContainer.innerHTML = '';
         recettesFiltrees.forEach(recette => {
@@ -32,8 +26,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             const imagePlaceholder = document.createElement('div');
             imagePlaceholder.classList.add('image-placeholder');
             recetteCard.appendChild(imagePlaceholder);
-            imagePlaceholder.style.backgroundImage = `url('contents/image_recette/${recette.image}')`;
-
 
             const recetteTitle = document.createElement('h2');
             recetteTitle.textContent = recette.name;
@@ -76,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         filterRecettes();
     }
 
-    // Ajoute un filtre
+    // Fonction pour ajouter un filtre sélectionné
     function addFilter(type, value) {
         if (!selectedFilters[type].includes(value) && value !== '') {
             selectedFilters[type].push(value);
@@ -84,13 +76,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Supprime un filtre
+    // Fonction pour supprimer un filtre
     function removeFilter(type, value) {
         selectedFilters[type] = selectedFilters[type].filter(item => item !== value);
         updateTags();
     }
 
-    // Filtrer les recettes
+    // Filtrer les recettes en fonction des filtres sélectionnés
     function filterRecettes() {
         const recettesFiltrees = recettes.filter(recette => {
             const ingredients = recette.ingredients.map(ing => ing.ingredient);
@@ -106,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         afficherRecettes(recettesFiltrees);
     }
 
-    // Événements pour les sélecteurs
+    // Écouteurs d'événements pour les sélecteurs
     selectIngredients.addEventListener('change', (e) => addFilter('ingredients', e.target.value));
     selectAppareils.addEventListener('change', (e) => addFilter('appareils', e.target.value));
     selectUstensiles.addEventListener('change', (e) => addFilter('ustensiles', e.target.value));
