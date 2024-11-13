@@ -143,9 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
             recette.ustensils.forEach(ustensile => ustensilesSet.add(ustensile));
         });
 
-        selectIngredients.innerHTML = '';
-        selectAppareils.innerHTML = '';
-        selectUstensiles.innerHTML = '';
+        selectIngredients.innerHTML = '<option value="" disabled selected>Ingrédients</option>';
+        selectAppareils.innerHTML = '<option value="" disabled selected>Appareils</option>';
+        selectUstensiles.innerHTML = '<option value="" disabled selected>Ustensiles</option>';
 
         // Ajouter les options dans les selects
         ingredientsSet.forEach(ingredient => {
@@ -168,6 +168,20 @@ document.addEventListener('DOMContentLoaded', () => {
             option.textContent = ustensile;
             selectUstensiles.appendChild(option);
         });
+
+         // Écouteurs d'événements pour les sélects
+        selectIngredients.addEventListener('change', (e) => {
+            addFilter('ingredients', e.target.value);
+            e.target.selectedIndex = 0; 
+        });
+        selectAppareils.addEventListener('change', (e) => {
+            addFilter('appareils', e.target.value);
+            e.target.selectedIndex = 0;  
+    });
+        selectUstensiles.addEventListener('change', (e) => {
+            addFilter('ustensiles', e.target.value);
+            e.target.selectedIndex = 0; 
+    });
     }
 });
 
