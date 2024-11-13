@@ -20,20 +20,28 @@
     </header>
 
     <div class="filters">
-        <select>
-            <option>Ingrédients</option>
+        <select id="ingredients">
+            <option value="">Ingrédients</option>
+            <option value="Poulet">Poulet</option>
+            <option value="Lait de coco">Lait de coco</option>
         </select>
-        <select>
-            <option>Appareils</option>
+        <select id="appareils">
+            <option value="">Appareils</option>
+            <option value="Four">Four</option>
         </select>
-        <select>
-            <option>Ustensiles</option>
+        <select id="ustensiles">
+            <option value="">Ustensiles</option>
+            <option value="Couteau">Couteau</option>
         </select>
+        <div class="tags-container"></div>
         <span>50 recettes</span>
     </div>
 
     <section class="recipes">
         <script src="/script/script.js"></script>
+        <script src="/script/filters.js"></script>
     </section>
+        
+
 </body>
 </html>
