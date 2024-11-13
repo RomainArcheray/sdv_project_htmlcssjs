@@ -4,13 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectAppareils = document.querySelector('select#appareils');
     const selectUstensiles = document.querySelector('select#ustensiles');
     const tagsContainer = document.querySelector('.tags-container');
-    const recetteCount = document.querySelector('.filters span'); 
+    const recetteCount = document.querySelector('.filters span');
+    const searchBar = document.querySelector('.search-bar input'); 
 
     let selectedFilters = {
         ingredients: [],
         appareils: [],
         ustensiles: []
     };
+
+    let searchQuery = ""; // Variable pour stocker le texte de recherche
 
     document.addEventListener('recettesChargees', () => {
         afficherRecettes(recettes); 
@@ -56,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 tag.classList.add('tag');
                 tag.textContent = item;
 
-                // Bouton pour supprimer le tag
                 const closeButton = document.createElement('button');
                 closeButton.textContent = 'X';
                 closeButton.onclick = () => removeFilter(filterType, item);
@@ -82,23 +84,35 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTags();
     }
 
-    // Filtrer les recettes en fonction des filtres sélectionnés
+    // Fonction de filtrage des recettes
     function filterRecettes() {
         const recettesFiltrees = recettes.filter(recette => {
             const ingredients = recette.ingredients.map(ing => ing.ingredient);
             const appareils = recette.appliance ? [recette.appliance] : [];
             const ustensiles = recette.ustensils || [];
 
-            return (
+            const matchesFilters = (
                 selectedFilters.ingredients.every(ingredient => ingredients.includes(ingredient)) &&
                 selectedFilters.appareils.every(appareil => appareils.includes(appareil)) &&
                 selectedFilters.ustensiles.every(ustensile => ustensiles.includes(ustensile))
             );
+
+            // Filtrage par recherche
+            const matchesSearch = searchQuery.length < 3 || recette.name.toLowerCase().includes(searchQuery.toLowerCase());
+
+            return matchesFilters && matchesSearch;
         });
+
         afficherRecettes(recettesFiltrees);
     }
 
-    // Écouteurs d'événements pour les sélecteurs
+    // Écouteur pour la barre de recherche
+    searchBar.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        filterRecettes();
+    });
+
+    // Écouteurs d'événements pour les sélecteurs de filtres
     selectIngredients.addEventListener('change', (e) => addFilter('ingredients', e.target.value));
     selectAppareils.addEventListener('change', (e) => addFilter('appareils', e.target.value));
     selectUstensiles.addEventListener('change', (e) => addFilter('ustensiles', e.target.value));
