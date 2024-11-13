@@ -94,8 +94,10 @@ header h1 {
 
 .image-placeholder {
     background-color: #e0e0e0;
-    height: 120px; /* Taille de l'image ajustée */
-    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    width: 200px;
+    height: 200px; /* Taille de l'image ajustée */
     margin-bottom: 15px;
 }
 

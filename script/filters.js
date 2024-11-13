@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const imagePlaceholder = document.createElement('div');
             imagePlaceholder.classList.add('image-placeholder');
             recetteCard.appendChild(imagePlaceholder);
+            imagePlaceholder.style.backgroundImage = `url('contents/image_recette/${recette.image}')`;
+
 
             const recetteTitle = document.createElement('h2');
             recetteTitle.textContent = recette.name;
