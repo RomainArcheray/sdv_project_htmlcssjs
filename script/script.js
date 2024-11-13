@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Ajoute une image
             const imagePlaceholder = document.createElement('div');
             imagePlaceholder.classList.add('image-placeholder');
-            imagePlaceholder.style.backgroundImage = `url('contents\image_recette${recette.image}')`;
+            imagePlaceholder.style.backgroundImage = `url('contents/image_recette/${recette.image}')`;
             recetteCard.appendChild(imagePlaceholder);
 
             // Ajoute le nom de la recette
