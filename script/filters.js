@@ -58,16 +58,23 @@ document.addEventListener('DOMContentLoaded', () => {
             recetteCard.appendChild(recetteLabel);
             recetteCard.appendChild(recetteDescription);
 
-            const ingredientsList = document.createElement('p');
-            ingredientsList.classList.add('ingredients');
-            ingredientsList.innerHTML = `INGRÉDIENTS:<br>` + 
-                recette.ingredients.map(ingredient => `${ingredient.ingredient} ${ingredient.quantity || ''} ${ingredient.unit || ''}`).join(', ');
-            recetteCard.appendChild(ingredientsList);
+            const ingredientsTitle = document.createElement('p');
+            ingredientsTitle.textContent = "INGRÉDIENTS:";
+            recetteCard.appendChild(ingredientsTitle);
 
+            const ingredientsList = document.createElement('ul');
+            ingredientsList.classList.add('ingredients-list');
+
+            recette.ingredients.forEach(ingredient => {
+            const ingredientItem = document.createElement('li');
+            ingredientItem.textContent = `${ingredient.ingredient} ${ingredient.quantity || ''} ${ingredient.unit || ''}`;
+            ingredientsList.appendChild(ingredientItem);
+            
+            recetteCard.appendChild(ingredientsList);
             recettesContainer.appendChild(recetteCard);
         });
         recetteCount.textContent = `${recettesFiltrees.length} recette${recettesFiltrees.length > 1 ? 's' : ''}`;
-    }
+    });
 
     // Fonction pour mettre à jour les tags affichés
     function updateTags() {
@@ -189,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.selectedIndex = 0; 
     });
     }
+}
 });
 
 
