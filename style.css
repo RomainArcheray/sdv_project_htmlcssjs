@@ -11,6 +11,7 @@ body {
 
 header {
     position: relative;
+    text-align: center;
     width: 100%;
     height: 350px;
     background-image: url('/contents/background.jpg'); 
@@ -57,8 +58,9 @@ header h1 {
 
 .filters {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: left;
     margin: 20px 0;
     gap: 10px;
 }
@@ -86,6 +88,9 @@ header h1 {
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
     transition: transform 0.2s; /* Effet au survol */
+    display: grid;
+    grid-template-rows: 200px auto auto 1fr auto;
+    flex-direction: column;
 }
 
 .recipe-card:hover {
@@ -94,8 +99,10 @@ header h1 {
 
 .image-placeholder {
     background-color: #e0e0e0;
-    height: 120px; /* Taille de l'image ajustée */
-    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    width: 190px;
+    height: 200px; /* Taille de l'image ajustée */
     margin-bottom: 15px;
 }
 
@@ -103,15 +110,78 @@ header h1 {
     font-size: 18px;
     color: #333;
     margin: 10px 0;
+    align-self: start;
+}
+
+.recipe-label {
+    font-weight: bold;
 }
 
 .recipe-description {
     font-size: 14px;
+    text-align: left;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    max-height: 100px;
+    overflow-y: auto;
 }
 
 .ingredients {
     font-size: 12px;
+    margin-top: 10px;
     color: #777;
+    align-self: start;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+    order: 1;
+}
+
+.tag {
+    background-color: #f9c74f;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.tag button {
+    background: none;
+    border: none;
+    margin-left: 5px;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.no-result-message {
+    color: red;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ingredients-list {
+    list-style-type: none; 
+    padding-left: 0;
+    margin-top: 5px;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+.ingredients-list li {
+    margin-bottom: 5px;
+    line-height: 1.5;
 }

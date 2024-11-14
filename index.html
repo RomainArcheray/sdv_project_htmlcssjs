@@ -8,7 +8,6 @@
 
 </head>
 <body>
-    <script src="/script/script.js"></script>
     <header>
         <div class="header-overlay">
             <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET GENEREUSES</h1>
@@ -20,20 +19,24 @@
     </header>
 
     <div class="filters">
-        <select>
-            <option>Ingrédients</option>
+        <div class="selectors">
+        <select id="ingredients">
+            <option value="" disabled selected>Ingrédients</option>
         </select>
-        <select>
-            <option>Appareils</option>
+        <select id="appareils">
+            <option value="" disabled selected>Appareils</option>
         </select>
-        <select>
-            <option>Ustensiles</option>
+        <select id="ustensiles">
+            <option value="" disabled selected>Ustensiles</option>
         </select>
-        <span>50 recettes</span>
-    </div>
+        </div>
+        <div class="tags-container"></div>
+            <span>50 recettes</span>
+        </div>
 
     <section class="recipes">
         <script src="/script/script.js"></script>
+        <script src="/script/filters.js"></script>
     </section>
 </body>
 </html>
