@@ -58,8 +58,9 @@ header h1 {
 
 .filters {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: left;
     margin: 20px 0;
     gap: 10px;
 }
@@ -137,7 +138,9 @@ header h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    width: 100%;
     margin-top: 10px;
+    order: 1;
 }
 
 .tag {
