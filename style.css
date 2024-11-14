@@ -143,6 +143,10 @@ header h1 {
     order: 1;
 }
 
+.tags-container span {
+    margin-right: 10px;
+}
+
 .tag {
     background-color: #f9c74f;
     color: #000;
