@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         recetteCount.textContent = `${recettesFiltrees.length} recette${recettesFiltrees.length > 1 ? 's' : ''}`;
     });
+    }
 
     // Fonction pour mettre à jour les tags affichés
     function updateTags() {
@@ -190,13 +191,12 @@ document.addEventListener('DOMContentLoaded', () => {
         selectAppareils.addEventListener('change', (e) => {
             addFilter('appareils', e.target.value);
             e.target.selectedIndex = 0;  
-    });
+        });
         selectUstensiles.addEventListener('change', (e) => {
             addFilter('ustensiles', e.target.value);
             e.target.selectedIndex = 0; 
-    });
+        });
     }
-}
 });
 
 
